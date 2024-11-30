@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Décoration Mouheddine</title>
+  <!-- Font Awesome CDN pour icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+      background: #ff9800;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: #e67e22;
+    }
+
+    /* About Section */
+    .about {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #fff;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Motivation Paragraph */
+    .motivation {
+      background-color: #f9f9f9;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .motivation h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .motivation p {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Gallery Section */
+    .gallery {
+      padding: 2rem 1rem;
+      background-color: #f9f9f9;
+    }
+
+    .gallery h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 images per row */
+      gap: 15px;
+      padding: 1rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .lightbox:target {
+      display: flex;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: white;
+      text-decoration: none;
+      z-index: 1001;
+    }
+
+    .lightbox-close:hover {
+      color: #ff9800;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 2rem 1rem;
+      background-color: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-info div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.1rem;
+    }
+
+    .contact-info i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #ff9800;
+    }
+
+    .contact-info a {
+      color: #333;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .contact-info a:hover {
+      color: #ff9800;
+    }
+
+    /* Avis Section */
+    .avis-section {
+      padding: 2rem;
+      background-color: #e9f5ff;
+    }
+
+    .avis-section h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .avis-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .avis-form input,
+    .avis-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .avis-form button {
+      padding: 0.8rem;
+      background-color: #1e3c72;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .avis-form button:hover {
+      background-color: #2a5298;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <h1>Décoration Mouheddine</h1>
+    <p><i class="fas fa-paint-roller"></i> Spécialiste des plafonds modernes et classiques</p>
+    <a href="#contact" class="btn-primary">Demander un devis</a>
+  </header>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>À propos de nous</h2>
+    <p>Avec plus de 12 ans d'expérience dans le domaine de la décoration des plafonds, Décoration Mouheddine s'est spécialisée dans les designs modernes et classiques. Nous avons acquis une expérience enrichissante avec 3 ans au Maroc, 4 ans en Libye, et plus de 6 ans en Tunisie (actuellement). Nous nous engageons à fournir des solutions élégantes et fonctionnelles adaptées à vos besoins. Chaque projet est une nouvelle occasion de démontrer notre expertise et notre passion pour l'art de la décoration intérieure.</p>
+</section>
+
+  <!-- Motivation Section -->
+  <section class="motivation">
+    <h3>Pourquoi choisir Décoration Mouheddine ?</h3>
+    <p>Nous croyons que chaque plafond peut être une œuvre d'art. Grâce à notre expertise et à notre engagement envers la qualité, nous transformons vos espaces avec des designs uniques et durables. Que vous recherchiez des plafonds modernes, classiques, ou des solutions sur mesure, nous avons l'expertise pour réaliser vos projets à la perfection. Rejoignez-nous pour créer un intérieur qui vous ressemble !</p>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <h2>Nos réalisations</h2>
+    <div class="gallery-grid">
+      <!-- Image 1 -->
+      <a href="#img1">
+        <img src="IMG_6352.JPG" alt="Plafond moderne 1">
+      </a>
+      <div id="img1" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6352.JPG" alt="Plafond moderne 1">
+      </div>
+    
+      <!-- Image 2 -->
+      <a href="#img2">
+        <img src="IMG_6360.JPG" alt="Plafond moderne 2">
+      </a>
+      <div id="img2" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6360.JPG" alt="Plafond moderne 2">
+      </div>
+
+      <!-- Image 3 -->
+      <a href="#img3">
+        <img src="IMG_6398.JPG" alt="Plafond en cours de réalisation">
+      </a>
+      <div id="img3" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6398.JPG" alt="Plafond en cours de réalisation">
+      </div>
+
+      
+
+      <!-- Image 4 -->
+      <a href="#img4">
+        <img src="IMG_6412.JPG" alt="Plafond en cours de réalisation">
+      </a>
+      <div id="img3" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6412.JPG" alt="Plafond en cours de réalisation">
+      </div> 
+      
+       <!-- Image 5     98 12  52 67 62 60-->
+      <a href="#img5">
+        <img src="IMG_6367.JPG" alt="Plafond en cours de réalisation">
+      </a>
+      <div id="img3" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6367.JPG" alt="Plafond en cours de réalisation">
+      </div>
+      
+        <!-- Image 6 -->
+      <a href="#img6">
+        <img src="IMG_6362.JPG" alt="Plafond en cours de réalisation">
+      </a>
+      <div id="img3" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6362.JPG" alt="Plafond en cours de réalisation">
+      </div>
+       <!-- Image 5     98 12  52 67 62 60 14  04 -->
+         <!-- Image 7 -->
+      <a href="#img6">
+        <img src="IMG_6414.JPG" alt="Plafond en cours de réalisation">
+      </a>
+      <div id="img3" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6414.JPG" alt="Plafond en cours de réalisation">
+      </div>
+
+       <!-- Image 8 -->
+       <a href="#img6">
+        <img src="IMG_6404.JPG" alt="Plafond en cours de réalisation">
+      </a>
+      <div id="img3" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6404.JPG" alt="Plafond en cours de réalisation">
+      </div>
+
+      <!-- Image 9 -->
+
+      <a href="#img6">
+        <img src="IMG_6365.JPG" alt="Plafond en cours de réalisation">
+      </a>
+      <div id="img3" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6365.JPG" alt="Plafond en cours de réalisation">
+      </div>
+      
+      <!-- Image 5     98 12  52 67 62 60 14  04  99-->
+       <!-- Image 10 -->
+
+       <a href="#img6">
+        <img src="IMG_6399.JPG" alt="Plafond en cours de réalisation">
+      </a>
+      <div id="img3" class="lightbox">
+        <a href="#" class="lightbox-close">&times;</a>
+        <img src="IMG_6399.JPG" alt="Plafond en cours de réalisation">
+      </div>
+    </div>
+  </section>
+
+  <!-- Avis Section -->
+  <section class="avis-section">
+    <h2>Donnez-nous votre avis</h2>
+    <form action="#" class="avis-form">
+      <label for="name">Nom et Prénom</label>
+      <input type="text" id="name" placeholder="Votre nom et prénom" required>
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Votre email" required>
+
+      <label for="avis">Votre avis</label>
+      <textarea id="avis" placeholder="Entrez votre avis ici..." rows="4" required></textarea>
+
+      <button type="submit">Envoyer votre avis</button>
+    </form>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contactez-nous</h2>
+    <div class="contact-info">
+      <div>
+        <i class="fas fa-phone-alt"></i>
+        <a href="tel:+21621127385">+216 21 127 385</a>
+      </div>
+      <div>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:decorationmouheddine@gmail.com">decorationmouheddine@gmail.com</a>
+      </div>
+      <div>
+        <i class="fas fa-map-marker-alt"></i>
+        <p>Menzel Temime, Nabeul, Tunisie</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Décoration Mouheddine | Tous droits réservés</p>
+  </footer>
+</body>
+</html>
